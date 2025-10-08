@@ -1,0 +1,14 @@
+{
+  "name": "mikeleg.github.io",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.14.1",
+    "astro-sitemap": "^1.0.0"
+  }
+}

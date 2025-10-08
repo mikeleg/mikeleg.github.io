@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+const posts = (await getCollection("blog")).filter(post => !post.data.draft);
+---
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog Tecnico di Mikeleg</title>
+    <meta name="description" content="Articoli tecnici, scoperte e tutorial." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="logo">404<span class="fluo">Sensei</span></h1>
+      <p>Il mio diario tecnico.</p>
+    </header>
+    <main>
+      <ul>
+        {posts.map(post => (
+          <li>
+            <a href={`/blog/${post.slug}/`}><strong>{post.data.title}</strong></a>
+            <p>{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <footer>
+      <p>© {new Date().getFullYear()} Mikeleg. Powered by Astro & GitHub Pages.</p>
+    </footer>
+  </body>
+</html>

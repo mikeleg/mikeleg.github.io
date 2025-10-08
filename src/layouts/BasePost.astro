@@ -1,0 +1,37 @@
+---
+const { title, pubDate, description } = Astro.props;
+const url = `https://mikeleg.github.io${Astro.url.pathname}`;
+---
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title} | DevFluoBlog</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={url} />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">Dev<span class="fluo">Fluo</span>Blog</a>
+    </header>
+    <main>
+      <article>
+        <h1>{title}</h1>
+        <time>{pubDate}</time>
+        <slot />
+      </article>
+      <a
+        class="linkedin-share"
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`}
+        target="_blank"
+        rel="noopener"
+      >Condividi su LinkedIn</a>
+    </main>
+    <footer>
+      <p>© {new Date().getFullYear()} Mikeleg. Powered by Astro & GitHub Pages.</p>
+    </footer>
+  </body>
+</html>

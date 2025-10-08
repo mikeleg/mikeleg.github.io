@@ -1,0 +1,36 @@
+---
+
+import { getCollection, getEntryBySlug } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+const { Content } = await render(post);
+if (!post) {
+  throw new Error('Articolo non trovato');
+}
+const { body, data } = post;
+---
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{data.title} | Blog di Mikeleg</title>
+    <meta name="description" content={data.description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>{data.title}</h1>
+        <Content />
+      </article>
+      <a href="/" style="display:block;margin-top:2rem;">← Torna alla home</a>
+    </main>
+  </body>
+</html>
