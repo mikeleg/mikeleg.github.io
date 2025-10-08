@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+dist/
+.cache/
+.env
+.env.*
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Astro
+astro.config.mjs.local
+
+# VS Code
+.vscode/
+.history/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Docker (se usi Docker Compose per Azurite)
+data/
