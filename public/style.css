@@ -157,7 +157,7 @@ main {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 1rem 1rem;
+  padding: 0.5rem 0.5rem;
 }
 
 /* Post List */
