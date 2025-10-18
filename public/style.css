@@ -27,7 +27,7 @@ body {
 
 header, footer {
   text-align: center;
-  padding: 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem 1rem 0.5rem;
 }
 
 main {
@@ -36,7 +36,7 @@ main {
   max-width: 100%;
   min-height: 0;
   margin: 0;
-  padding: 2rem;
+  padding: 1rem;
   background: rgba(24,24,27,0.95);
   border-radius: 0;
   box-shadow: none;
