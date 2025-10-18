@@ -52,13 +52,6 @@ Nel tuo file di configurazione (es. `appsettings.Development.json` o `.env`), ag
   "AzureStorage": "UseDevelopmentStorage=true"
 }
 ```
-
-Oppure, se preferisci una stringa esplicita:
-
-```text
-DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFeq...==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;
-```
-
 ---
 
 ## 💻 3. Esempio in .NET

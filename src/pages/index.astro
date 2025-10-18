@@ -9,6 +9,15 @@ const posts = (await getCollection("blog")).filter(post => !post.data.draft);
     <meta name="description" content="Articoli tecnici, scoperte e tutorial." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9SMHC1X8Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9SMHC1X8Z4');
+    </script>
   </head>
   <body>
     <header>
