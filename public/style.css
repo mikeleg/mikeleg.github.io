@@ -4,6 +4,7 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: 'Inter', Arial, sans-serif;
   background: #18181b;
@@ -12,26 +13,30 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .logo {
   font-weight: bold;
   font-size: 2.2rem;
   letter-spacing: -1px;
 }
+
 .fluo {
   color: #39ff14;
   text-shadow: 0 0 8px #39ff14;
 }
+
 header, footer {
   text-align: center;
   padding: 2rem 1rem 1rem;
 }
+
 main {
   flex: 1 1 auto;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: 0;
   margin: 0;
-  padding: 0;
+  padding: 2rem;
   background: rgba(24,24,27,0.95);
   border-radius: 0;
   box-shadow: none;
@@ -39,29 +44,33 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-main > article {
-  width: 60vw;
-  min-width: 0;
-  padding: 2rem 1rem;
   box-sizing: border-box;
 }
-@media (max-width: 700px) {
-  main > article {
-    padding: 1rem 0.5rem;
-  }
+
+main > article,
+main > ul {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
+
 li {
   margin: 1.5rem 0;
 }
+
 a {
   color: #39ff14;
   text-decoration: none;
 }
+
 a.linkedin-share {
   display: inline-block;
   margin-top: 2rem;
@@ -73,9 +82,11 @@ a.linkedin-share {
   box-shadow: 0 0 8px #0A66C2;
   transition: background 0.2s;
 }
+
 a.linkedin-share:hover {
   background: #004182;
 }
+
 pre, code {
   background: #22223b;
   color: #39ff14;
@@ -83,11 +94,35 @@ pre, code {
   border-radius: 6px;
   font-size: 1em;
 }
-@media (max-width: 600px) {
+
+@media (max-width: 768px) {
   main {
-    padding: 1rem;
+    padding: 1.5rem 1rem;
   }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  header, footer {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 1rem 0.75rem;
+  }
+
   .logo {
     font-size: 1.5rem;
+  }
+
+  header, footer {
+    padding: 1rem 0.75rem;
+  }
+
+  li {
+    margin: 1rem 0;
   }
 }
