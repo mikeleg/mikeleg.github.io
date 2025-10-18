@@ -1,29 +1,71 @@
 name: Deploy Astro site to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+    # trigger anche su tag di versione che iniziano con "v", es. v1.0.0
+    tags:
+      - 'v*'
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.detect.outputs.should_deploy }}
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect if we should deploy (new .md in content/pages OR tag push)
+        id: detect
+        shell: bash
+        run: |
+          echo "GITHUB_REF=$GITHUB_REF"
+          is_tag=false
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "Detected tag push: ${GITHUB_REF}"
+            is_tag=true
+          fi
+
+          echo "Checking git diff between ${{ github.event.before }} and ${{ github.sha }} for newly added markdown pages..."
+          git diff --name-status ${{ github.event.before }} ${{ github.sha }} > changed.txt || true
+          cat changed.txt || true
+
+          has_new_md=false
+          if awk '{ if ($1 == "A" && $2 ~ /^content\/pages\/.*\.md$/) exit 0 } END { exit 1 }' changed.txt; then
+            has_new_md=true
+          fi
+
+          if [ "$is_tag" = true ] || [ "$has_new_md" = true ]; then
+            echo "should_deploy=true" >> $GITHUB_OUTPUT
+            echo "Decision: deploy = true"
+          else
+            echo "should_deploy=false" >> $GITHUB_OUTPUT
+            echo "Decision: deploy = false"
+          fi
+
   build:
+    needs: check
+    if: needs.check.outputs.should_deploy == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+
       - name: Install, build, and upload your site
         uses: withastro/action@v3
+
   deploy:
     needs: build
+    if: needs.check.outputs.should_deploy == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
