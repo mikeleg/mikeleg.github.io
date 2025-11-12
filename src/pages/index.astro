@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 const posts = (await getCollection("blog")).filter(post => !post.data.draft);
+posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
 ---
 <html lang="it">
   <head>

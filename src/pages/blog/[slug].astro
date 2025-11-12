@@ -5,6 +5,7 @@ import { getEntry, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
+  posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
   return posts.map(post => ({ params: { slug: post.slug } }));
 }
 

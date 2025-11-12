@@ -3,7 +3,6 @@ title: "Guida ad Azurite"
 description: "Scopri come usare Azurite in Docker per testare Azure Storage in locale — con esempi"
 pubDate: "2025-10-08"
 tags: ["Azure", "Docker", "Storage", "DevOps", "Locale"]
-layout: "../../layouts/BlogPost.astro"
 ---
 
 # ☁️ Guida **Azurite** in Docker

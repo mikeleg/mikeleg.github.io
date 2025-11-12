@@ -3,7 +3,6 @@ title: "Deploy di una Next.js App in Monorepo Nx su Azure Web App"
 description: "Scopri come usare Azurite in Docker per testare Azure Storage in locale — con esempi"
 pubDate: "2025-10-08"
 tags: ["Azure", "Docker", "Storage", "DevOps", "Locale"]
-layout: "../../layouts/BlogPost.astro"
 draft: true
 ---
 
