@@ -3,6 +3,8 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://mikeleg.github.io/",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+  ],
   output: "static",
 });
